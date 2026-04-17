@@ -65,21 +65,24 @@ This project is based on the following Data Mining techniques:
 ---
 
 ## 📸 Project Screenshots
-<img width="1347" height="601" alt="image" src="https://github.com/user-attachments/assets/3da2b401-925b-4eac-9cd7-3ca8468cc0f8" />
-<img width="1350" height="478" alt="image" src="https://github.com/user-attachments/assets/361e8e5c-a3e3-4a9e-9590-203ae2586194" />
 
-<img width="1362" height="601" alt="image" src="https://github.com/user-attachments/assets/51970a5a-3548-4655-bf40-e012bc6738ab" />
+Below are the user interface screens of the system:
 
+### 🏠 Home Page
 
-<p align="center">
-  <img src="screenshots/home.png" width="45%" />
-  <img src="screenshots/result.png" width="45%" />
-</p>
+<img width="100%" src="https://github.com/user-attachments/assets/3da2b401-925b-4eac-9cd7-3ca8468cc0f8" />
 
-<p align="center">
-  <b>Left:</b> Home Page &nbsp;&nbsp;&nbsp;&nbsp;
-  <b>Right:</b> Result Page
-</p>
+---
+
+### 📊 Result Page
+
+<img width="100%" src="https://github.com/user-attachments/assets/361e8e5c-a3e3-4a9e-9590-203ae2586194" />
+
+---
+
+### 📊 Additional View
+
+<img width="100%" src="https://github.com/user-attachments/assets/51970a5a-3548-4655-bf40-e012bc6738ab" />
 
 ---
 
@@ -92,9 +95,6 @@ Heart-Disease-Prediction/
 │── templates/
 │   ├── index.html
 │   └── result.html
-│── screenshots/
-│   ├── home.png
-│   └── result.png
 │── README.md
 │── report.pdf
 ```
