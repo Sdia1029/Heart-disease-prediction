@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #eef2f7;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .result-container {
+            max-width: 550px;
+            width: 100%;
+        }
+
+        .result-card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e2edf7;
+        }
+
+        .result-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .result-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0.5rem 0;
+        }
+
+        .result-message {
+            font-size: 1.2rem;
+            color: #4a627a;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 1rem;
+            font-weight: 500;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #1e4a76;
+            padding: 0.75rem 1.8rem;
+            border-radius: 2rem;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 1rem;
+            transition: 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-back:hover {
+            background: #0f3b5e;
+            text-decoration: none;
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .risk-high {
+            color: #c73d3d;
+        }
+
+        .risk-low {
+            color: #2c7a4a;
+        }
+
+        hr {
+            margin: 1.5rem 0;
+            border: none;
+            border-top: 1px solid #e2edf7;
+        }
+
+        .note {
+            font-size: 0.75rem;
+            color: #8ba0bc;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="result-container">
+        <div class="result-card">
+            {% if result == "Heart Disease" %}
+                <div class="result-icon">
+                    <i class="fas fa-heartbeat" style="color: #c73d3d;"></i>
+                </div>
+                <div class="result-title risk-high">High Risk</div>
+                <div class="result-message">
+                    <i class="fas fa-exclamation-triangle"></i> {{ result }}
+                </div>
+                <p style="color: #6f8fae; font-size: 0.9rem;">
+                    Further medical evaluation recommended
+                </p>
+            {% elif result == "No Heart Disease" %}
+                <div class="result-icon">
+                    <i class="fas fa-heart" style="color: #2c7a4a;"></i>
+                </div>
+                <div class="result-title risk-low">Low Risk</div>
+                <div class="result-message">
+                    <i class="fas fa-check-circle"></i> {{ result }}
+                </div>
+                <p style="color: #6f8fae; font-size: 0.9rem;">
+                    Maintain healthy lifestyle habits
+                </p>
+            {% else %}
+                <div class="result-icon">
+                    <i class="fas fa-exclamation-circle" style="color: #e6a017;"></i>
+                </div>
+                <div class="result-title" style="color: #e6a017;">Error</div>
+                <div class="result-message">
+                    {{ result }}
+                </div>
+            {% endif %}
+
+            <hr>
+            <a href="/" class="btn-back">
+                <i class="fas fa-arrow-left"></i> New Assessment
+            </a>
+            <div class="note">
+                <i class="fas fa-stethoscope"></i> This prediction is based on clinical data model — consult a physician for diagnosis
+            </div>
+        </div>
+    </div>
+</body>
+</html>

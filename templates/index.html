@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Risk Predictor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #eef2f7;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* Simple Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .page-header h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #1a4d8c;
+            letter-spacing: -0.3px;
+        }
+
+        .page-header p {
+            color: #4a627a;
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+        }
+
+        /* Card */
+        .form-card {
+            background: #ffffff;
+            border-radius: 1.25rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e0e7ef;
+            overflow: hidden;
+        }
+
+        .card-header {
+            background: #f8fafc;
+            padding: 1rem 1.75rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .card-header h3 {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #1e3a5f;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-header h3 i {
+            color: #2c6e9e;
+        }
+
+        /* Two column grid */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem;
+            padding: 1.75rem;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .field label {
+            font-weight: 600;
+            font-size: 0.8rem;
+            color: #1e2a44;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .field label i {
+            margin-right: 0.4rem;
+            color: #5486b4;
+            font-size: 0.75rem;
+        }
+
+        .field input,
+        .field select {
+            padding: 0.7rem 0.9rem;
+            border: 1.5px solid #dce3ec;
+            border-radius: 0.75rem;
+            font-size: 0.9rem;
+            font-family: 'Inter', monospace;
+            background: #fff;
+            transition: 0.2s;
+        }
+
+        .field input:focus,
+        .field select:focus {
+            outline: none;
+            border-color: #2c7cb6;
+            box-shadow: 0 0 0 3px rgba(44,124,182,0.1);
+        }
+
+        .hint {
+            font-size: 0.7rem;
+            color: #6f8fae;
+        }
+
+        /* full width for button */
+        .full-row {
+            grid-column: span 2;
+            margin-top: 0.5rem;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: #1e4a76;
+            border: none;
+            padding: 0.85rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-radius: 2rem;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            transition: 0.2s;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-submit:hover {
+            background: #0f3b5e;
+            transform: translateY(-1px);
+        }
+
+        /* result page */
+        .result-card {
+            max-width: 550px;
+            margin: 3rem auto;
+            background: white;
+            border-radius: 1.5rem;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+            border: 1px solid #e2edf7;
+        }
+
+        .result-badge {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .result-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin: 0.5rem 0;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #eef2f7;
+            padding: 0.6rem 1.5rem;
+            border-radius: 2rem;
+            color: #1e4a76;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 1rem;
+            transition: 0.2s;
+        }
+
+        .btn-back:hover {
+            background: #e2e8f0;
+            text-decoration: none;
+            color: #0f3b5e;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.7rem;
+            color: #8ba0bc;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 750px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+                padding: 1.25rem;
+            }
+            .full-row {
+                grid-column: span 1;
+            }
+            .page-header h1 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="page-header">
+        <h1><i class="fas fa-heartbeat" style="color:#c73d3d;"></i> Heart Risk Assessment</h1>
+        <p>Clinical parameters & risk evaluation</p>
+    </div>
+
+    <div class="form-card">
+        <div class="card-header">
+            <h3><i class="fas fa-clipboard-list"></i> Patient Evaluation Form</h3>
+        </div>
+        <form action="/predict" method="post" id="predictForm">
+            <div class="form-grid">
+                <!-- Age -->
+                <div class="field">
+                    <label><i class="fas fa-calendar"></i> Age (years)</label>
+                    <input type="number" name="age" id="age" placeholder="e.g., 55" required>
+
+                </div>
+                <!-- Sex dropdown -->
+                <div class="field">
+                    <label><i class="fas fa-venus-mars"></i> Sex</label>
+                    <select name="sex" id="sex" required>
+                        <option value="" disabled selected>Select</option>
+                        <option value="1">Male</option>
+                        <option value="0">Female</option>
+                    </select>
+                    <div class="hint">Male / Female</div>
+                </div>
+                <!-- Chest Pain Type -->
+                <div class="field">
+                    <label><i class="fas fa-lungs"></i> Chest Pain Type</label>
+                    <select name="cp" id="cp" required>
+                        <option value="" disabled selected>Select type</option>
+                        <option value="0">Typical Angina</option>
+                        <option value="1">Atypical Angina</option>
+                        <option value="2">Non-anginal Pain</option>
+                        <option value="3">Asymptomatic</option>
+                    </select>
+                    <div class="hint">0 = Typical, 3 = Asymptomatic</div>
+                </div>
+                <!-- Resting BP -->
+                <div class="field">
+                    <label><i class="fas fa-tachometer-alt"></i> Resting BP (mm Hg)</label>
+                    <input type="number" name="trestbps" id="trestbps" placeholder="e.g., 130" required>
+                    <div class="hint">Systolic blood pressure</div>
+                </div>
+                <!-- Cholesterol -->
+                <div class="field">
+                    <label><i class="fas fa-oil-can"></i> Cholesterol (mg/dl)</label>
+                    <input type="number" name="chol" id="chol" placeholder="e.g., 240" required>
+                    <div class="hint">Serum cholesterol</div>
+                </div>
+                <!-- FBS dropdown -->
+                <div class="field">
+                    <label><i class="fas fa-tint"></i> Fasting Blood Sugar >120 mg/dl</label>
+                    <select name="fbs" id="fbs" required>
+                        <option value="" disabled selected>Select</option>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                    <div class="hint">Fasting glucose &gt;120</div>
+                </div>
+                <!-- Resting ECG -->
+                <div class="field">
+                    <label><i class="fas fa-heart"></i> Resting ECG</label>
+                    <select name="restecg" id="restecg" required>
+                        <option value="" disabled selected>Select ECG</option>
+                        <option value="0">Normal</option>
+                        <option value="1">ST-T wave abnormality</option>
+                        <option value="2">LV hypertrophy</option>
+                    </select>
+                    <div class="hint">0-2 classification</div>
+                </div>
+                <!-- Max Heart Rate -->
+                <div class="field">
+                    <label><i class="fas fa-running"></i> Max Heart Rate (thalach)</label>
+                    <input type="number" name="thalach" id="thalach" placeholder="e.g., 150" required>
+                    <div class="hint">Maximum achieved heart rate</div>
+                </div>
+                <!-- Exercise Angina -->
+                <div class="field">
+                    <label><i class="fas fa-dumbbell"></i> Exercise Induced Angina</label>
+                    <select name="exang" id="exang" required>
+                        <option value="" disabled selected>Select</option>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                    <div class="hint">Angina during exercise</div>
+                </div>
+                <!-- Oldpeak -->
+                <div class="field">
+                    <label><i class="fas fa-chart-line"></i> Oldpeak (ST depression)</label>
+                    <input type="number" step="any" name="oldpeak" id="oldpeak" placeholder="e.g., 1.2" required>
+                    <div class="hint">ST depression induced by exercise</div>
+                </div>
+                <!-- Slope -->
+                <div class="field">
+                    <label><i class="fas fa-mountain"></i> Slope of ST segment</label>
+                    <select name="slope" id="slope" required>
+                        <option value="" disabled selected>Select slope</option>
+                        <option value="0">Upsloping</option>
+                        <option value="1">Flat</option>
+                        <option value="2">Downsloping</option>
+                    </select>
+                    <div class="hint">Peak exercise ST slope</div>
+                </div>
+                <!-- Major vessels -->
+                <div class="field">
+                    <label><i class="fas fa-vial"></i> Major Vessels (0-3)</label>
+                    <select name="ca" id="ca" required>
+                        <option value="" disabled selected>Select count</option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                    <div class="hint">Number of major vessels</div>
+                </div>
+                <!-- Thalassemia -->
+                <div class="field">
+                    <label><i class="fas fa-dna"></i> Thalassemia</label>
+                    <select name="thal" id="thal" required>
+                        <option value="" disabled selected>Select type</option>
+                        <option value="1">Normal</option>
+                        <option value="2">Fixed Defect</option>
+                        <option value="3">Reversible Defect</option>
+                    </select>
+                    <div class="hint">Thalassemia category</div>
+                </div>
+
+                <div class="full-row">
+                    <button type="submit" class="btn-submit"><i class="fas fa-chart-simple"></i> Predict Risk</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <footer>
+        <i class="fas fa-stethoscope"></i> Based on clinical indicators — for medical guidance
+    </footer>
+</div>
+
+<script>
+    document.getElementById('predictForm').addEventListener('submit', function(e) {
+        let age = document.getElementById('age').value;
+        let chol = document.getElementById('chol').value;
+        let bp = document.getElementById('trestbps').value;
+        let hr = document.getElementById('thalach').value;
+        if (age && (age < 20 || age > 100)) {
+            alert("Age out of typical range (20–100).");
+            e.preventDefault();
+        }
+        if (chol && (chol < 100 || chol > 550)) {
+            alert("Cholesterol value unusual (100–550 mg/dL).");
+            e.preventDefault();
+        }
+        if (bp && (bp < 60 || bp > 220)) {
+            alert("Resting BP out of range (60–220 mmHg).");
+            e.preventDefault();
+        }
+        if (hr && (hr < 60 || hr > 210)) {
+            alert("Heart rate should be 60–210 bpm.");
+            e.preventDefault();
+        }
+    });
+</script>
+</body>
+</html>
