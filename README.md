@@ -71,16 +71,11 @@ Below are the user interface screens of the system:
 ### 🏠 Home Page
 
 <img width="100%" src="https://github.com/user-attachments/assets/3da2b401-925b-4eac-9cd7-3ca8468cc0f8" />
-
----
-
-### 📊 Result Page
-
 <img width="100%" src="https://github.com/user-attachments/assets/361e8e5c-a3e3-4a9e-9590-203ae2586194" />
 
 ---
 
-### 📊 Additional View
+### 📊 Result Page
 
 <img width="100%" src="https://github.com/user-attachments/assets/51970a5a-3548-4655-bf40-e012bc6738ab" />
 
