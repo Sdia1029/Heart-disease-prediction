@@ -6,9 +6,9 @@ A machine learning-based web application that predicts the risk of heart disease
 
 ## 📌 Project Overview
 
-Heart disease is one of the leading causes of death worldwide. This project aims to analyze patient health data and predict whether a person is at risk of heart disease or not.
+Heart disease is one of the leading causes of death worldwide. This project analyzes patient health data and predicts whether a person is at risk of heart disease.
 
-The system takes user input (age, cholesterol, blood pressure, etc.) and uses a trained machine learning model to classify the risk as:
+The system takes user input such as age, cholesterol, blood pressure, and other medical attributes, then uses a trained machine learning model to classify the result as:
 
 * 🔴 High Risk (Heart Disease)
 * 🟢 Low Risk (No Heart Disease)
@@ -64,6 +64,24 @@ This project is based on the following Data Mining techniques:
 
 ---
 
+## 📸 Project Screenshots
+<img width="1347" height="601" alt="image" src="https://github.com/user-attachments/assets/3da2b401-925b-4eac-9cd7-3ca8468cc0f8" />
+<img width="1350" height="478" alt="image" src="https://github.com/user-attachments/assets/361e8e5c-a3e3-4a9e-9590-203ae2586194" />
+<img width="1362" height="601" alt="image" src="https://github.com/user-attachments/assets/51970a5a-3548-4655-bf40-e012bc6738ab" />
+
+
+<p align="center">
+  <img src="screenshots/home.png" width="45%" />
+  <img src="screenshots/result.png" width="45%" />
+</p>
+
+<p align="center">
+  <b>Left:</b> Home Page &nbsp;&nbsp;&nbsp;&nbsp;
+  <b>Right:</b> Result Page
+</p>
+
+---
+
 ## 📂 Project Structure
 
 ```
@@ -73,6 +91,9 @@ Heart-Disease-Prediction/
 │── templates/
 │   ├── index.html
 │   └── result.html
+│── screenshots/
+│   ├── home.png
+│   └── result.png
 │── README.md
 │── report.pdf
 ```
@@ -87,7 +108,7 @@ Heart-Disease-Prediction/
 git clone https://github.com/Sdia1029/Heart-disease-prediction.git
 ```
 
-2. Navigate to project folder:
+2. Navigate to the project folder:
 
 ```
 cd Heart-disease-prediction
@@ -99,7 +120,7 @@ cd Heart-disease-prediction
 pip install -r requirements.txt
 ```
 
-4. Run the app:
+4. Run the application:
 
 ```
 python app.py
@@ -122,6 +143,6 @@ BS Data Science – Superior University
 
 ## 📌 Note
 
-This system is for educational purposes only and should not be used as a substitute for professional medical advice.
+This project is for educational purposes only and should not be used as a substitute for professional medical advice.
 
 ---
